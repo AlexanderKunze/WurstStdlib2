@@ -8,10 +8,7 @@ constant regionMap = new HashMap<region, int>()
 constant triggerData = new Table()
 
 public function trigger.registerUnitInRangeSource(unit whichUnit, real range, boolexpr filter) returns event
-	int h = GetHandleId(this)
-	int u = GetHandleId(whichUnit)
-	triggerData.saveUnit(h,whichUnit)
-	triggerData.saveTrigger(u,this)
+	triggerData..saveUnit(this.getHandleId(),whichUnit)..saveTrigger(whichUnit.getHandleId(),this)
 	return TriggerRegisterUnitInRange(this, whichUnit, range, filter)
 
 public function trigger.registerUnitInRangeSource(unit whichUnit, real range) returns event
